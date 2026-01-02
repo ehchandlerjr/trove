@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/db/server';
 import { z } from 'zod';
+import { rateLimiters, rateLimitResponse } from '@/lib/rate-limit';
 
 // Validation schema for creating an item
 const createItemSchema = z.object({
@@ -35,6 +36,11 @@ export async function POST(request: NextRequest) {
         { error: 'Not authenticated' },
         { status: 401 }
       );
+    }
+    
+    // Rate limiting by user ID
+    if (!rateLimiters.items.check(user.id)) {
+      return rateLimitResponse(rateLimiters.items, user.id);
     }
     
     // Parse and validate request body

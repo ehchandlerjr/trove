@@ -62,9 +62,9 @@
   --color-divider: #E2DED6;
   
   --color-text: #1A1612;
-  --color-text-secondary: #6B6560;
-  --color-text-tertiary: #8A857F;
-  --color-text-muted: #A09A94;
+  --color-text-secondary: #5A554F;
+  --color-text-tertiary: #706B65;
+  --color-text-muted: #857F79;
   
   --color-accent: #C7923E;
   --color-accent-hover: #B8852F;
@@ -235,9 +235,9 @@
   --color-divider: #CDD2DC;
   
   --color-text: #1A1D24;
-  --color-text-secondary: #5A6070;
-  --color-text-tertiary: #7A8290;
-  --color-text-muted: #9AA0B0;
+  --color-text-secondary: #4A5060;
+  --color-text-tertiary: #606878;
+  --color-text-muted: #78808F;
   
   /* Fjord Blue — like deep Nordic waters */
   --color-accent: #3B7CB8;

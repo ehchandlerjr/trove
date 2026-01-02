@@ -24,8 +24,8 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
           type={type}
           id={inputId}
           className={cn(
-            // Base styles
-            'w-full px-4 py-2.5',
+            // Base styles with 44px minimum touch target
+            'w-full px-4 py-2.5 min-h-[44px]',
             'bg-[var(--color-surface)] text-[var(--color-text)]',
             'placeholder:text-[var(--color-text-muted)]',
             'transition-colors duration-150',

@@ -47,6 +47,13 @@ The "Notion of gift apps"—quiet excellence across every dimension. Not one cle
 - ✅ **Security hardening** (SSRF protection, XSS escaping, input validation)
 - ✅ **Accessibility improvements** (ARIA labels, sr-only, keyboard nav)
 
+### January 2026 P0 Audit Fixes ✅
+- ✅ **Theme-aware treasure chest logo** - Static chests that adapt to current theme
+- ✅ **Focus traps in dialogs** - ShareDialog and DeleteListButton properly trap focus
+- ✅ **44px touch targets** - All buttons and inputs meet mobile accessibility minimum
+- ✅ **Rate limiting on API routes** - parse-url and items routes are protected
+- ✅ **WCAG AA color contrast** - Fixed text-muted colors across all themes
+
 ## Design System - Thomistic Beauty
 
 Based on Aquinas's conditions for beauty: integritas, consonantia, claritas.

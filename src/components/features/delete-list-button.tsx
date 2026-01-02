@@ -1,10 +1,11 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useRouter } from 'next/navigation';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
+import { useFocusTrap } from '@/lib/hooks/use-focus-trap';
 import { createClient } from '@/lib/db/client';
 import { Trash2, X, AlertTriangle, Loader2 } from 'lucide-react';
 
@@ -19,6 +20,19 @@ export function DeleteListButton({ listId, listTitle }: DeleteListButtonProps) {
   const [confirmText, setConfirmText] = useState('');
   const [deleting, setDeleting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const { containerRef } = useFocusTrap(showConfirm);
+
+  // Handle Escape key to close dialog
+  const handleKeyDown = useCallback((e: KeyboardEvent) => {
+    if (e.key === 'Escape' && showConfirm && !deleting) {
+      setShowConfirm(false);
+    }
+  }, [showConfirm, deleting]);
+
+  useEffect(() => {
+    document.addEventListener('keydown', handleKeyDown);
+    return () => document.removeEventListener('keydown', handleKeyDown);
+  }, [handleKeyDown]);
 
   const handleDelete = async () => {
     if (confirmText !== listTitle) return;
@@ -43,13 +57,21 @@ export function DeleteListButton({ listId, listTitle }: DeleteListButtonProps) {
     router.refresh();
   };
 
+  const handleClose = () => {
+    if (!deleting) {
+      setShowConfirm(false);
+      setConfirmText('');
+      setError(null);
+    }
+  };
+
   return (
     <>
       <Button 
         variant="ghost" 
         size="sm" 
         onClick={() => setShowConfirm(true)}
-        className="text-[var(--color-text-secondary)] hover:text-[var(--color-danger)] hover:bg-[var(--color-danger-bg)]"
+        className="text-[var(--color-text-secondary)] hover:text-[var(--color-danger)] hover:bg-[var(--color-danger-bg)] min-h-[44px] min-w-[44px]"
         aria-label="Delete list"
       >
         <Trash2 className="h-4 w-4" />
@@ -60,11 +82,12 @@ export function DeleteListButton({ listId, listTitle }: DeleteListButtonProps) {
           {/* Backdrop */}
           <div 
             className="absolute inset-0 bg-black/20 backdrop-blur-sm" 
-            onClick={() => !deleting && setShowConfirm(false)} 
+            onClick={handleClose} 
           />
           
-          {/* Dialog */}
+          {/* Dialog with focus trap */}
           <Card 
+            ref={containerRef}
             className="relative z-10 w-full max-w-md" 
             padding="lg"
             role="alertdialog"
@@ -84,8 +107,8 @@ export function DeleteListButton({ listId, listTitle }: DeleteListButtonProps) {
                 </p>
               </div>
               <button
-                onClick={() => !deleting && setShowConfirm(false)}
-                className="p-2 rounded-lg hover:bg-[var(--color-bg-subtle)] transition-colors"
+                onClick={handleClose}
+                className="p-2 min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg hover:bg-[var(--color-bg-subtle)] transition-colors"
                 disabled={deleting}
                 aria-label="Close dialog"
               >
@@ -103,25 +126,26 @@ export function DeleteListButton({ listId, listTitle }: DeleteListButtonProps) {
                 placeholder="Type list name to confirm"
                 disabled={deleting}
                 autoFocus
+                className="min-h-[44px]"
               />
             </div>
 
             {error && (
-              <p className="text-sm text-[var(--color-danger)] mt-4">{error}</p>
+              <p className="text-sm text-[var(--color-danger)] mt-4" role="alert">{error}</p>
             )}
 
             <div className="flex gap-4 mt-6">
               <Button
                 variant="ghost"
-                className="flex-1"
-                onClick={() => setShowConfirm(false)}
+                className="flex-1 min-h-[44px]"
+                onClick={handleClose}
                 disabled={deleting}
               >
                 Cancel
               </Button>
               <Button
                 variant="danger"
-                className="flex-1"
+                className="flex-1 min-h-[44px]"
                 onClick={handleDelete}
                 disabled={confirmText !== listTitle || deleting}
               >

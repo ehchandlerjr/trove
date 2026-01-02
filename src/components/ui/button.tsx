@@ -59,11 +59,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
       ),
     };
     
-    // 8pt grid spacing (4, 8, 16, 24, 32, 48px)
+    // 8pt grid spacing - minimum 44px touch targets for accessibility
     const sizes = {
-      sm: 'px-2 py-1 text-sm gap-1 min-h-[32px]',
-      md: 'px-4 py-2 text-sm gap-2 min-h-[40px]',
-      lg: 'px-6 py-2 text-base gap-2 min-h-[48px]',
+      sm: 'px-3 py-2 text-sm gap-1.5 min-h-[44px]',
+      md: 'px-4 py-2.5 text-sm gap-2 min-h-[44px]',
+      lg: 'px-6 py-3 text-base gap-2 min-h-[48px]',
     };
 
     return (

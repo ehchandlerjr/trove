@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { createClient } from '@/lib/db/server';
 import { z } from 'zod';
 import { extractProduct, type ExtractionContext } from '@/lib/extraction/strategies';
+import { rateLimiters, rateLimitResponse } from '@/lib/rate-limit';
 
 // Validation schema
 const parseUrlSchema = z.object({
@@ -100,6 +101,14 @@ function isPrivateOrReservedIP(hostname: string): boolean {
 export async function POST(request: NextRequest) {
   try {
     const supabase = await createClient();
+    
+    // Rate limiting - use user ID if authenticated, otherwise IP
+    const { data: { user } } = await supabase.auth.getUser();
+    const rateLimitKey = user?.id || request.headers.get('x-forwarded-for') || 'anonymous';
+    
+    if (!rateLimiters.parseUrl.check(rateLimitKey)) {
+      return rateLimitResponse(rateLimiters.parseUrl, rateLimitKey);
+    }
     
     // Parse and validate request body
     const body = await request.json();
