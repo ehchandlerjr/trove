@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Giftwise</title>
+  <style>
+    :root {
+      --color-bg: #FAF8F5;
+      --color-surface: #FFFFFF;
+      --color-border: #E8E4DD;
+      --color-border-subtle: #F0EDE8;
+      --color-text: #1A1612;
+      --color-text-secondary: #6B6560;
+      --color-text-muted: #9A9590;
+      --color-accent: #C7923E;
+      --color-accent-hover: #B8842F;
+      --color-success: #22C55E;
+      --color-success-bg: #F0FDF4;
+      --color-danger: #EF4444;
+      --color-danger-bg: #FEF2F2;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: Georgia, 'Times New Roman', serif;
+      font-size: 14px;
+      color: var(--color-text);
+      background: var(--color-bg);
+      width: 320px;
+      min-height: 200px;
+    }
+
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px;
+      background: var(--color-surface);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .logo {
+      font-size: 24px;
+    }
+
+    .header h1 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+
+    .content {
+      padding: 16px;
+    }
+
+    .loading {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 16px;
+      color: var(--color-text-secondary);
+    }
+
+    .spinner {
+      width: 24px;
+      height: 24px;
+      border: 2px solid var(--color-border);
+      border-top-color: var(--color-accent);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+      margin-bottom: 12px;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .product-card {
+      background: var(--color-surface);
+      border: 1px solid var(--color-border);
+      border-radius: 12px;
+      padding: 16px;
+      margin-bottom: 12px;
+    }
+
+    .product-image {
+      width: 100%;
+      height: 120px;
+      object-fit: contain;
+      background: var(--color-bg);
+      border-radius: 8px;
+      margin-bottom: 12px;
+    }
+
+    .product-title {
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px;
+      line-height: 1.3;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .product-price {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--color-accent);
+      margin-bottom: 8px;
+    }
+
+    .product-source {
+      font-size: 11px;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .confidence {
+      display: inline-block;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-size: 10px;
+      font-weight: 600;
+      margin-left: 8px;
+    }
+
+    .confidence.high { background: var(--color-success-bg); color: var(--color-success); }
+    .confidence.medium { background: #FEF3C7; color: #D97706; }
+    .confidence.low { background: var(--color-danger-bg); color: var(--color-danger); }
+
+    .list-select {
+      margin-bottom: 12px;
+    }
+
+    .list-select label {
+      display: block;
+      font-size: 12px;
+      color: var(--color-text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .list-select select {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 14px;
+      font-family: inherit;
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      background: var(--color-surface);
+      color: var(--color-text);
+      cursor: pointer;
+    }
+
+    .list-select select:focus {
+      outline: none;
+      border-color: var(--color-accent);
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 12px 16px;
+      font-size: 14px;
+      font-family: inherit;
+      font-weight: 600;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .btn-primary {
+      background: var(--color-accent);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: var(--color-accent-hover);
+    }
+
+    .btn-primary:disabled {
+      opacity: 0.6;
+      cursor: not-allowed;
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border);
+      margin-top: 8px;
+    }
+
+    .btn-secondary:hover {
+      background: var(--color-bg);
+    }
+
+    .success-state {
+      text-align: center;
+      padding: 32px 16px;
+    }
+
+    .success-icon {
+      font-size: 48px;
+      margin-bottom: 12px;
+    }
+
+    .success-state h2 {
+      font-size: 18px;
+      margin-bottom: 8px;
+    }
+
+    .success-state p {
+      color: var(--color-text-secondary);
+      font-size: 14px;
+    }
+
+    .error-state {
+      text-align: center;
+      padding: 32px 16px;
+      color: var(--color-danger);
+    }
+
+    .login-prompt {
+      text-align: center;
+      padding: 32px 16px;
+    }
+
+    .login-prompt p {
+      color: var(--color-text-secondary);
+      margin-bottom: 16px;
+    }
+
+    .teach-button {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin-top: 12px;
+      background: transparent;
+      border: 1px dashed var(--color-border);
+      border-radius: 8px;
+      color: var(--color-text-secondary);
+      font-size: 13px;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.15s;
+    }
+
+    .teach-button:hover {
+      border-color: var(--color-accent);
+      color: var(--color-accent);
+    }
+
+    .no-product {
+      text-align: center;
+      padding: 24px 16px;
+    }
+
+    .no-product p {
+      color: var(--color-text-secondary);
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <span class="logo">🎁</span>
+    <h1>Giftwise</h1>
+  </div>
+
+  <div class="content" id="content">
+    <div class="loading" id="loading">
+      <div class="spinner"></div>
+      <p>Detecting product info...</p>
+    </div>
+  </div>
+
+  <script src="browser-polyfill.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

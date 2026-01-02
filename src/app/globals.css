@@ -1,0 +1,846 @@
+@import "tailwindcss";
+
+/* ============================================================================
+   THOMISTIC DESIGN SYSTEM — FOUR DISTINCT WORLDS
+   
+   Not color variations. Four different visual languages.
+   
+   | Theme        | Font              | Corners    | Density  | Accent      | Vibe                     |
+   |--------------|-------------------|------------|----------|-------------|--------------------------|
+   | Vellum       | Georgia (serif)   | Soft 8px   | Airy     | Warm Gold   | A beautiful book         |
+   | Obsidian     | Georgia (serif)   | Soft 8px   | Airy     | Warm Gold   | A candlelit study        |
+   | Vesper       | Inter (humanist)  | Clean 6px  | Measured | Fjord Blue  | A Nordic sanctuary       |
+   | Scriptorium  | Nunito (organic)  | Pill 20px  | Breathing| Amber       | A cathedral grove        |
+   
+   The key insight: Users perceive themes through FONT + CORNERS + DENSITY.
+   Everything else is noise.
+   ============================================================================ */
+
+
+/* ============================================================================
+   VELLUM: "The Vatican Library"
+   
+   A beautiful book. Warm afternoon light on excellent paper.
+   Georgia serif, soft corners, airy spacing, warm gold.
+   ============================================================================ */
+
+:root,
+[data-theme="vellum"] {
+  /* === TYPOGRAPHY === */
+  --font-display: 'Georgia', 'Times New Roman', serif;
+  --font-body: 'Georgia', 'Times New Roman', serif;
+  --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, monospace;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --letter-spacing: 0.01em;
+  
+  /* === GEOMETRY — Soft & Bookish === */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+  
+  /* === DENSITY — Airy & Spacious === */
+  --density-modifier: 1;
+  --space-unit: 8px;
+  --padding-card: 24px;
+  --padding-button: 12px 20px;
+  --gap-grid: 24px;
+  --gap-stack: 16px;
+  
+  /* === COLORS — Warm Paper & Gold === */
+  --color-bg: #FAF8F5;
+  --color-bg-subtle: #F5F2ED;
+  --color-surface: #FFFEFA;
+  --color-surface-raised: #FFFFFF;
+  
+  --color-border: #E8E4DD;
+  --color-border-subtle: #F0EDE8;
+  --color-divider: #E2DED6;
+  
+  --color-text: #1A1612;
+  --color-text-secondary: #6B6560;
+  --color-text-tertiary: #8A857F;
+  --color-text-muted: #A09A94;
+  
+  --color-accent: #C7923E;
+  --color-accent-hover: #B8852F;
+  --color-accent-subtle: #F7F0E3;
+  --color-accent-muted: #D4A85A;
+  
+  --color-success: #5A8A5A;
+  --color-success-bg: #F0F5F0;
+  --color-warning: #C4933D;
+  --color-warning-bg: #FDF8F0;
+  --color-danger: #B85450;
+  --color-danger-bg: #FDF5F5;
+  --color-info: #5A7A8A;
+  --color-info-bg: #F5F8FA;
+  
+  --color-button-text: #1A1612;
+  
+  /* === ELEVATION — Drop shadows (objects lift off paper) === */
+  --shadow-sm: 0 1px 2px rgba(26, 22, 18, 0.06);
+  --shadow-md: 0 2px 4px rgba(26, 22, 18, 0.05), 0 4px 8px rgba(26, 22, 18, 0.05);
+  --shadow-lg: 0 4px 8px rgba(26, 22, 18, 0.05), 0 12px 24px rgba(26, 22, 18, 0.08);
+  --shadow-xl: 0 8px 16px rgba(26, 22, 18, 0.06), 0 20px 40px rgba(26, 22, 18, 0.1);
+  
+  --ring-color: rgba(199, 146, 62, 0.4);
+  --ring-offset: 2px;
+  
+  --selection-bg: var(--color-accent-subtle);
+  --selection-text: var(--color-text);
+  
+  --scrollbar-thumb: var(--color-border);
+  --scrollbar-thumb-hover: var(--color-text-tertiary);
+  
+  --grain-opacity: 0.03;
+  
+  color-scheme: light;
+}
+
+
+/* ============================================================================
+   OBSIDIAN: "The Candlelit Study"
+   
+   Rembrandt's golden darkness. Same design language as Vellum, but dark.
+   Georgia serif, soft corners, airy spacing, GLOWING gold.
+   ============================================================================ */
+
+[data-theme="obsidian"] {
+  /* === TYPOGRAPHY — Same as Vellum === */
+  --font-display: 'Georgia', 'Times New Roman', serif;
+  --font-body: 'Georgia', 'Times New Roman', serif;
+  --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, monospace;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --letter-spacing: 0.01em;
+  
+  /* === GEOMETRY — Same soft corners === */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+  --radius-full: 9999px;
+  
+  /* === DENSITY — Same airy spacing === */
+  --density-modifier: 1;
+  --space-unit: 8px;
+  --padding-card: 24px;
+  --padding-button: 12px 20px;
+  --gap-grid: 24px;
+  --gap-stack: 16px;
+  
+  /* === COLORS — Warm Browns & Glowing Gold === */
+  --color-bg: #1A1714;
+  --color-bg-subtle: #211E1B;
+  --color-surface: #282422;
+  --color-surface-raised: #322E2A;
+  
+  --color-border: #3D3935;
+  --color-border-subtle: #333028;
+  --color-divider: #4A4540;
+  
+  --color-text: #F5F0E8;
+  --color-text-secondary: #C5BEB4;
+  --color-text-tertiary: #9A938A;
+  --color-text-muted: #756E65;
+  
+  /* Gold GLOWS brighter in darkness */
+  --color-accent: #E5B55C;
+  --color-accent-hover: #F0C56C;
+  --color-accent-subtle: #2E2820;
+  --color-accent-muted: #C9A04A;
+  
+  --color-success: #7AAA7A;
+  --color-success-bg: #1E261E;
+  --color-warning: #D4A34D;
+  --color-warning-bg: #2A2418;
+  --color-danger: #D87A76;
+  --color-danger-bg: #2A1E1E;
+  --color-info: #7A9AB0;
+  --color-info-bg: #1E2428;
+  
+  --color-button-text: #1A1714;
+  
+  /* === ELEVATION — Inner glows (surfaces radiate warmth) === */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 220, 150, 0.03);
+  --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 220, 150, 0.04);
+  --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 220, 150, 0.05);
+  --shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 220, 150, 0.06);
+  
+  --ring-color: rgba(229, 181, 92, 0.5);
+  --ring-offset: 2px;
+  
+  --selection-bg: rgba(229, 181, 92, 0.3);
+  --selection-text: var(--color-text);
+  
+  --scrollbar-thumb: var(--color-border);
+  --scrollbar-thumb-hover: var(--color-text-tertiary);
+  
+  --grain-opacity: 0.04;
+  
+  color-scheme: dark;
+}
+
+
+/* ============================================================================
+   VESPER: "The Nordic Sanctuary"
+   
+   Morning light on a fjord. Clean Scandinavian furniture. Hygge.
+   Human warmth expressed through clarity and restraint.
+   
+   Inter (humanist sans), clean geometry, measured spacing, fjord blue.
+   ============================================================================ */
+
+[data-theme="vesper"] {
+  /* === TYPOGRAPHY — HUMANIST SANS (clean but warm) === */
+  --font-display: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, monospace;
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --letter-spacing: -0.01em;
+  
+  /* === GEOMETRY — CLEAN & GEOMETRIC (but not harsh) === */
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+  --radius-xl: 12px;
+  --radius-2xl: 16px;
+  --radius-full: 9999px;
+  
+  /* === DENSITY — MEASURED & BALANCED === */
+  --density-modifier: 0.95;
+  --space-unit: 8px;
+  --padding-card: 20px;
+  --padding-button: 10px 18px;
+  --gap-grid: 16px;
+  --gap-stack: 12px;
+  
+  /* === COLORS — Fjord Blue & Birch White === */
+  --color-bg: #F7F8FA;
+  --color-bg-subtle: #ECEEF2;
+  --color-surface: #FFFFFF;
+  --color-surface-raised: #FFFFFF;
+  
+  --color-border: #D8DCE4;
+  --color-border-subtle: #E8EBF0;
+  --color-divider: #CDD2DC;
+  
+  --color-text: #1A1D24;
+  --color-text-secondary: #5A6070;
+  --color-text-tertiary: #7A8290;
+  --color-text-muted: #9AA0B0;
+  
+  /* Fjord Blue — like deep Nordic waters */
+  --color-accent: #3B7CB8;
+  --color-accent-hover: #2E6AA3;
+  --color-accent-subtle: #EBF2F8;
+  --color-accent-muted: #5A9AD0;
+  
+  --color-success: #3A8A6A;
+  --color-success-bg: #EBF5F1;
+  --color-warning: #B8862D;
+  --color-warning-bg: #FBF6EC;
+  --color-danger: #C45454;
+  --color-danger-bg: #FBEFEF;
+  --color-info: #3B7CB8;
+  --color-info-bg: #EBF2F8;
+  
+  --color-button-text: #FFFFFF;
+  
+  /* === ELEVATION — Subtle, restrained shadows === */
+  --shadow-sm: 0 1px 2px rgba(26, 29, 36, 0.04);
+  --shadow-md: 0 2px 4px rgba(26, 29, 36, 0.04), 0 4px 8px rgba(26, 29, 36, 0.04);
+  --shadow-lg: 0 4px 8px rgba(26, 29, 36, 0.05), 0 8px 16px rgba(26, 29, 36, 0.06);
+  --shadow-xl: 0 8px 16px rgba(26, 29, 36, 0.06), 0 16px 32px rgba(26, 29, 36, 0.08);
+  
+  --ring-color: rgba(59, 124, 184, 0.4);
+  --ring-offset: 2px;
+  
+  --selection-bg: rgba(59, 124, 184, 0.15);
+  --selection-text: var(--color-text);
+  
+  --scrollbar-thumb: var(--color-border);
+  --scrollbar-thumb-hover: var(--color-text-tertiary);
+  
+  --grain-opacity: 0.015;  /* Very subtle - clean but not sterile */
+  
+  color-scheme: light;
+}
+
+
+/* ============================================================================
+   SCRIPTORIUM: "The Cathedral Grove"
+   
+   "In every walk with nature one receives far more than he seeks." — John Muir
+   
+   The forest floor as sanctuary. Dappled light through the canopy.
+   Where the redwoods are the columns and the sky is the dome.
+   
+   Nunito (organic), generous curves, breathing space, amber light through leaves.
+   ============================================================================ */
+
+[data-theme="scriptorium"] {
+  /* === TYPOGRAPHY — ORGANIC & REVERENT === */
+  --font-display: 'Nunito', 'Quicksand', system-ui, sans-serif;
+  --font-body: 'Nunito', 'Quicksand', system-ui, sans-serif;
+  --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, monospace;
+  --font-weight-normal: 400;
+  --font-weight-medium: 600;
+  --font-weight-semibold: 700;
+  --letter-spacing: 0.01em;
+  
+  /* === GEOMETRY — SOFT & NATURAL (like river stones) === */
+  --radius-sm: 12px;
+  --radius-md: 16px;
+  --radius-lg: 20px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-full: 9999px;
+  
+  /* === DENSITY — BREATHING ROOM (like clearings in the forest) === */
+  --density-modifier: 1.1;
+  --space-unit: 10px;
+  --padding-card: 28px;
+  --padding-button: 14px 24px;
+  --gap-grid: 24px;
+  --gap-stack: 20px;
+  
+  /* === COLORS — Deep Forest & Dappled Sunlight === */
+  --color-bg: #1C211C;
+  --color-bg-subtle: #232923;
+  --color-surface: #2A322A;
+  --color-surface-raised: #343E34;
+  
+  --color-border: #404A40;
+  --color-border-subtle: #323C32;
+  --color-divider: #4A564A;
+  
+  --color-text: #EAF0E8;
+  --color-text-secondary: #B8C8B4;
+  --color-text-tertiary: #8CA088;
+  --color-text-muted: #6A7E68;
+  
+  /* Amber — sunlight filtering through the canopy */
+  --color-accent: #D4A03C;
+  --color-accent-hover: #E4B04C;
+  --color-accent-subtle: #2C2A1C;
+  --color-accent-muted: #C4902C;
+  
+  --color-success: #6AAA6A;
+  --color-success-bg: #1E281E;
+  --color-warning: #D4A03C;
+  --color-warning-bg: #2C2A1C;
+  --color-danger: #D88070;
+  --color-danger-bg: #2C2220;
+  --color-info: #6A9A8A;
+  --color-info-bg: #1E2826;
+  
+  --color-button-text: #1C211C;
+  
+  /* === ELEVATION — Soft & diffuse (like mist in the valley) === */
+  --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.12);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.18);
+  --shadow-xl: 0 12px 40px rgba(0, 0, 0, 0.22);
+  
+  --ring-color: rgba(212, 160, 60, 0.4);
+  --ring-offset: 3px;
+  
+  --selection-bg: rgba(212, 160, 60, 0.25);
+  --selection-text: var(--color-text);
+  
+  --scrollbar-thumb: var(--color-border);
+  --scrollbar-thumb-hover: var(--color-text-tertiary);
+  
+  /* Heavy grain — like bark texture, forest floor */
+  --grain-opacity: 0.06;
+  
+  color-scheme: dark;
+}
+
+
+/* ============================================================================
+   SYSTEM PREFERENCE FALLBACK
+   Defaults to Vellum (light) or Obsidian (dark) based on OS setting
+   ============================================================================ */
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    /* Inherit Obsidian values */
+    --font-display: 'Georgia', 'Times New Roman', serif;
+    --font-body: 'Georgia', 'Times New Roman', serif;
+    --font-mono: 'SF Mono', SFMono-Regular, ui-monospace, monospace;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --letter-spacing: 0.01em;
+    
+    --radius-sm: 6px;
+    --radius-md: 8px;
+    --radius-lg: 12px;
+    --radius-xl: 16px;
+    --radius-2xl: 24px;
+    --radius-full: 9999px;
+    
+    --density-modifier: 1;
+    --space-unit: 8px;
+    --padding-card: 24px;
+    --padding-button: 12px 20px;
+    --gap-grid: 24px;
+    --gap-stack: 16px;
+    
+    --color-bg: #1A1714;
+    --color-bg-subtle: #211E1B;
+    --color-surface: #282422;
+    --color-surface-raised: #322E2A;
+    
+    --color-border: #3D3935;
+    --color-border-subtle: #333028;
+    --color-divider: #4A4540;
+    
+    --color-text: #F5F0E8;
+    --color-text-secondary: #C5BEB4;
+    --color-text-tertiary: #9A938A;
+    --color-text-muted: #756E65;
+    
+    --color-accent: #E5B55C;
+    --color-accent-hover: #F0C56C;
+    --color-accent-subtle: #2E2820;
+    --color-accent-muted: #C9A04A;
+    
+    --color-success: #7AAA7A;
+    --color-success-bg: #1E261E;
+    --color-warning: #D4A34D;
+    --color-warning-bg: #2A2418;
+    --color-danger: #D87A76;
+    --color-danger-bg: #2A1E1E;
+    --color-info: #7A9AB0;
+    --color-info-bg: #1E2428;
+    
+    --color-button-text: #1A1714;
+    
+    --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 220, 150, 0.03);
+    --shadow-md: 0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 220, 150, 0.04);
+    --shadow-lg: 0 4px 16px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 220, 150, 0.05);
+    --shadow-xl: 0 8px 32px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 220, 150, 0.06);
+    
+    --ring-color: rgba(229, 181, 92, 0.5);
+    --ring-offset: 2px;
+    
+    --selection-bg: rgba(229, 181, 92, 0.3);
+    --selection-text: var(--color-text);
+    
+    --scrollbar-thumb: var(--color-border);
+    --scrollbar-thumb-hover: var(--color-text-tertiary);
+    
+    --grain-opacity: 0.04;
+    
+    color-scheme: dark;
+  }
+}
+
+
+/* ============================================================================
+   SHARED SCALE VALUES (don't vary by theme)
+   ============================================================================ */
+
+:root {
+  /* Type scale - Major Third (1.25) */
+  --text-xs: 0.75rem;      /* 12px */
+  --text-sm: 0.875rem;     /* 14px */
+  --text-base: 1rem;       /* 16px */
+  --text-lg: 1.125rem;     /* 18px */
+  --text-xl: 1.25rem;      /* 20px */
+  --text-2xl: 1.5rem;      /* 24px */
+  --text-3xl: 1.875rem;    /* 30px */
+  --text-4xl: 2.25rem;     /* 36px */
+  
+  /* Line heights */
+  --leading-tight: 1.2;
+  --leading-snug: 1.35;
+  --leading-normal: 1.5;
+  --leading-relaxed: 1.625;
+
+  /* Base spacing (can be modified by density) */
+  --space-1: 0.25rem;   /* 4px */
+  --space-2: 0.5rem;    /* 8px */
+  --space-3: 0.75rem;   /* 12px */
+  --space-4: 1rem;      /* 16px */
+  --space-5: 1.5rem;    /* 24px */
+  --space-6: 2rem;      /* 32px */
+  --space-8: 3rem;      /* 48px */
+  --space-10: 4rem;     /* 64px */
+  --space-12: 6rem;     /* 96px */
+
+  /* Animation */
+  --spring-bounce: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --spring-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --duration-fast: 150ms;
+  --duration-normal: 200ms;
+  --duration-slow: 300ms;
+}
+
+
+/* ============================================================================
+   BASE STYLES
+   ============================================================================ */
+
+html {
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  font-weight: var(--font-weight-normal);
+  letter-spacing: var(--letter-spacing);
+  line-height: var(--leading-normal);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  transition: background-color var(--duration-normal) ease,
+              color var(--duration-normal) ease;
+}
+
+
+/* ============================================================================
+   GRAIN TEXTURE
+   Adapts opacity based on theme (0 for Vesper, higher for Scriptorium)
+   ============================================================================ */
+
+.surface-grain {
+  position: relative;
+}
+
+.surface-grain::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: var(--grain-opacity, 0.03);
+  pointer-events: none;
+  mix-blend-mode: overlay;
+  border-radius: inherit;
+}
+
+
+/* ============================================================================
+   SCROLLBAR
+   ============================================================================ */
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 5px;
+  border: 2px solid var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+
+/* ============================================================================
+   FOCUS STYLES
+   ============================================================================ */
+
+*:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 var(--ring-offset) var(--color-bg), 
+              0 0 0 calc(var(--ring-offset) + 2px) var(--color-accent);
+}
+
+
+/* ============================================================================
+   SELECTION
+   ============================================================================ */
+
+::selection {
+  background: var(--selection-bg);
+  color: var(--selection-text);
+}
+
+
+/* ============================================================================
+   TYPOGRAPHY UTILITIES
+   ============================================================================ */
+
+.font-display {
+  font-family: var(--font-display);
+}
+
+.font-body {
+  font-family: var(--font-body);
+}
+
+.font-mono {
+  font-family: var(--font-mono);
+}
+
+
+/* ============================================================================
+   THEME-SPECIFIC INTERACTIVE CARDS
+   
+   Each theme has distinct hover behavior that reinforces its character:
+   - Vellum: Cards lift off the paper (scale + shadow)
+   - Obsidian: Cards glow warmer (inner glow intensifies)
+   - Vesper: Clean highlight appears (border, no scale)
+   - Scriptorium: Grounded shift (no scale, subtle warmth)
+   ============================================================================ */
+
+/* --- VELLUM: Floating Paper --- */
+:root .card-interactive,
+[data-theme="vellum"] .card-interactive {
+  transition: transform 200ms cubic-bezier(0.34, 1.56, 0.64, 1),
+              box-shadow 200ms ease-out,
+              border-color 150ms ease;
+}
+
+:root .card-interactive:hover,
+[data-theme="vellum"] .card-interactive:hover {
+  transform: scale(1.015) translateY(-2px);
+  box-shadow: 
+    0 6px 12px rgba(26, 22, 18, 0.08),
+    0 16px 32px rgba(26, 22, 18, 0.1);
+  border-color: var(--color-border);
+}
+
+:root .card-interactive:active,
+[data-theme="vellum"] .card-interactive:active {
+  transform: scale(0.99);
+}
+
+
+/* --- OBSIDIAN: Golden Glow --- */
+[data-theme="obsidian"] .card-interactive {
+  transition: transform 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              box-shadow 250ms ease-out,
+              border-color 200ms ease;
+}
+
+[data-theme="obsidian"] .card-interactive:hover {
+  transform: scale(1.01);
+  box-shadow: 
+    0 4px 16px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 220, 150, 0.12),
+    0 0 30px rgba(229, 181, 92, 0.08);
+  border-color: rgba(229, 181, 92, 0.3);
+}
+
+[data-theme="obsidian"] .card-interactive:active {
+  transform: scale(0.995);
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 220, 150, 0.08);
+}
+
+
+/* --- VESPER: Crisp Panel (no scale, border highlight) --- */
+[data-theme="vesper"] .card-interactive {
+  transition: box-shadow 150ms ease-out,
+              border-color 150ms ease;
+  /* No transform transition - vesper doesn't scale */
+}
+
+[data-theme="vesper"] .card-interactive:hover {
+  transform: none; /* Explicitly no scale */
+  box-shadow: 
+    0 2px 4px rgba(26, 29, 36, 0.06),
+    0 4px 12px rgba(26, 29, 36, 0.08);
+  border-color: var(--color-accent);
+}
+
+[data-theme="vesper"] .card-interactive:active {
+  transform: none;
+  box-shadow: 
+    0 1px 2px rgba(26, 29, 36, 0.06),
+    inset 0 1px 2px rgba(26, 29, 36, 0.04);
+}
+
+
+/* --- SCRIPTORIUM: Grounded & Organic (no scale, warmth shift) --- */
+[data-theme="scriptorium"] .card-interactive {
+  transition: box-shadow 300ms ease-out,
+              border-color 300ms ease,
+              background-color 300ms ease;
+  /* Slower, more deliberate transitions */
+}
+
+[data-theme="scriptorium"] .card-interactive:hover {
+  transform: none; /* Grounded - doesn't lift */
+  box-shadow: 
+    0 6px 20px rgba(0, 0, 0, 0.2),
+    0 0 40px rgba(212, 160, 60, 0.06);
+  border-color: rgba(212, 160, 60, 0.25);
+  background-color: var(--color-surface-raised);
+}
+
+[data-theme="scriptorium"] .card-interactive:active {
+  transform: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  background-color: var(--color-surface);
+}
+
+
+/* ============================================================================
+   THEME-SPECIFIC BUTTONS
+   
+   Buttons inherit the interactive character of their theme.
+   ============================================================================ */
+
+/* --- VELLUM: Bouncy spring --- */
+:root button,
+[data-theme="vellum"] button {
+  transition: transform 150ms cubic-bezier(0.34, 1.56, 0.64, 1),
+              background-color 150ms ease,
+              box-shadow 150ms ease;
+}
+
+/* --- OBSIDIAN: Weighted, deliberate --- */
+[data-theme="obsidian"] button {
+  transition: transform 200ms cubic-bezier(0.25, 0.46, 0.45, 0.94),
+              background-color 200ms ease,
+              box-shadow 250ms ease;
+}
+
+[data-theme="obsidian"] button:hover:not(:disabled) {
+  box-shadow: 
+    0 2px 8px rgba(0, 0, 0, 0.3),
+    0 0 20px rgba(229, 181, 92, 0.15);
+}
+
+/* --- VESPER: Instant, no bounce --- */
+[data-theme="vesper"] button {
+  transition: background-color 120ms ease,
+              border-color 120ms ease,
+              box-shadow 120ms ease;
+}
+
+[data-theme="vesper"] button:hover:not(:disabled) {
+  transform: none !important; /* Vesper doesn't bounce */
+}
+
+[data-theme="vesper"] button:active:not(:disabled) {
+  transform: none !important;
+}
+
+/* --- SCRIPTORIUM: Slow, organic --- */
+[data-theme="scriptorium"] button {
+  transition: transform 250ms ease-out,
+              background-color 300ms ease,
+              box-shadow 300ms ease;
+}
+
+[data-theme="scriptorium"] button:hover:not(:disabled) {
+  transform: scale(1.01); /* Gentler than default */
+}
+
+[data-theme="scriptorium"] button:active:not(:disabled) {
+  transform: scale(0.99);
+}
+
+
+/* ============================================================================
+   THEME TRANSITION
+   ============================================================================ */
+
+.theme-transitioning,
+.theme-transitioning * {
+  transition: background-color 0.2s ease, 
+              border-color 0.2s ease, 
+              color 0.2s ease,
+              box-shadow 0.2s ease !important;
+}
+
+
+/* ============================================================================
+   EVENT THEME OVERRIDES
+   When an event theme is active, these override the base accent
+   ============================================================================ */
+
+[data-event-theme]:not([data-event-theme="none"]) {
+  --color-accent: var(--event-accent, var(--color-accent));
+  --color-accent-subtle: var(--event-accent-bg, var(--color-accent-subtle));
+}
+
+
+/* ============================================================================
+   FLOATING SHAPES ANIMATION
+   ============================================================================ */
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0px); 
+  }
+  50% { 
+    transform: translateY(-12px); 
+  }
+}
+
+@keyframes float-slow {
+  0%, 100% { 
+    transform: translateY(0px) rotate(0deg); 
+  }
+  50% { 
+    transform: translateY(-8px) rotate(3deg); 
+  }
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.9; }
+}
+
+.floating-shape {
+  animation: float 20s ease-in-out infinite;
+}
+
+.floating-shape-slow {
+  animation: float-slow 30s ease-in-out infinite;
+}
+
+.twinkle {
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+/* ============================================================================
+   ACCESSIBILITY UTILITIES
+   ============================================================================ */
+
+/* Visually hidden but accessible to screen readers */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Focus visible for keyboard navigation */
+.focus-visible:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 2px;
+}
