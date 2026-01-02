@@ -6,7 +6,8 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Avatar } from '@/components/ui/avatar';
-import { Gift, Calendar, Check, ExternalLink } from 'lucide-react';
+import { EmptyStateChest } from '@/components/ui/empty-state-chest';
+import { Calendar, Check, ExternalLink, Package } from 'lucide-react';
 import { formatPrice, formatDate } from '@/lib/utils';
 import { ClaimButton } from '@/components/features/claim-button';
 import { ListEventThemeWrapper } from '@/components/features/list-event-theme-wrapper';
@@ -180,7 +181,7 @@ export default async function SharedListPage({ params }: PageProps) {
                       </div>
                     ) : (
                       <div className="w-24 h-24 rounded-lg bg-[var(--color-bg-subtle)] flex items-center justify-center flex-shrink-0">
-                        <Gift className="h-8 w-8 text-[var(--color-text-muted)]" />
+                        <Package className="h-8 w-8 text-[var(--color-text-muted)]" />
                       </div>
                     )}
 
@@ -248,8 +249,8 @@ export default async function SharedListPage({ params }: PageProps) {
             })}
           </div>
         ) : (
-          <Card className="text-center py-12">
-            <Gift className="h-12 w-12 text-[var(--color-text-muted)] mx-auto mb-4" />
+          <Card className="text-center py-16">
+            <EmptyStateChest className="mx-auto mb-6" size="xl" />
             <h3 className="text-lg font-semibold text-[var(--color-text)] mb-2 font-display">
               No items yet
             </h3>

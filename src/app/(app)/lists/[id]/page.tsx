@@ -4,7 +4,8 @@ import { createClient } from '@/lib/db/server';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Plus, Settings } from 'lucide-react';
+import { EmptyStateChest } from '@/components/ui/empty-state-chest';
+import { ArrowLeft, Settings } from 'lucide-react';
 import { formatPrice } from '@/lib/utils';
 import { AddItemForm } from '@/components/features/add-item-form';
 import { EditableItem } from '@/components/features/editable-item';
@@ -118,16 +119,14 @@ export default async function ListDetailPage({ params }: PageProps) {
 
       {/* Items List */}
       {items && items.length > 0 ? (
-        <div className="space-y-3">
+        <div className="space-y-4">
           {items.map((item) => (
             <EditableItem key={item.id} item={item} isOwner={true} />
           ))}
         </div>
       ) : (
-        <Card className="text-center py-12">
-          <div className="w-14 h-14 bg-[var(--color-bg-subtle)] rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <Plus className="h-6 w-6 text-[var(--color-text-muted)]" />
-          </div>
+        <Card className="text-center py-16">
+          <EmptyStateChest className="mx-auto mb-6" size="lg" />
           <h3 className="text-lg font-semibold text-[var(--color-text)] mb-2 font-display">
             No items yet
           </h3>

@@ -3,7 +3,8 @@ import { createClient } from '@/lib/db/server';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { Plus, Gift, Calendar, Lock, Globe, Users } from 'lucide-react';
+import { EmptyStateChest } from '@/components/ui/empty-state-chest';
+import { Plus, Calendar, Lock, Globe, Users, Package } from 'lucide-react';
 import { formatRelativeTime, formatDate } from '@/lib/utils';
 import type { List } from '@/lib/db/database.types';
 import type { Metadata } from 'next';
@@ -67,7 +68,7 @@ export default async function DashboardPage() {
             Create and manage your gift lists
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-4">
           <Link href="/add-from-url" className="hidden sm:block">
             <Button variant="outline">
               <Plus className="h-4 w-4" />
@@ -128,7 +129,7 @@ export default async function DashboardPage() {
                   
                   <div className="flex items-center gap-4 text-sm text-[var(--color-text-tertiary)]">
                     <span className="flex items-center gap-1">
-                      <Gift className="h-4 w-4" />
+                      <Package className="h-4 w-4" />
                       {itemCount} {itemCount === 1 ? 'item' : 'items'}
                     </span>
                     
@@ -149,10 +150,8 @@ export default async function DashboardPage() {
           })}
         </div>
       ) : (
-        <Card className="text-center py-12">
-          <div className="w-16 h-16 bg-[var(--color-accent-subtle)] rounded-2xl flex items-center justify-center mx-auto mb-4">
-            <Gift className="h-8 w-8 text-[var(--color-accent)]" />
-          </div>
+        <Card className="text-center py-16">
+          <EmptyStateChest className="mx-auto mb-6" size="xl" />
           <h3 className="text-lg font-semibold text-[var(--color-text)] mb-2 font-display">
             No wishlists yet
           </h3>

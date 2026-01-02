@@ -3,7 +3,8 @@
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Gift, Heart, Star, Sparkles, Moon, Sun, Trees, Library, Monitor } from 'lucide-react';
+import { TroveIcon } from '@/components/ui/logo';
+import { ArrowLeft, Heart, Star, Sparkles, Moon, Sun, Trees, Library, Monitor } from 'lucide-react';
 import Link from 'next/link';
 import { useTheme, type Theme, type ResolvedTheme } from '@/components/providers/theme-provider';
 
@@ -70,7 +71,7 @@ export default function ThemeShowcase() {
       {/* Theme Switcher */}
       <Card padding="lg">
         <h2 className="font-semibold text-[var(--color-text)] mb-4">Select a World</h2>
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+        <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
           {themes.map((t) => {
             const Icon = t.icon;
             const isActive = theme === t.id;
@@ -115,7 +116,7 @@ export default function ThemeShowcase() {
           <Card variant="interactive" padding="md">
             <div className="flex items-center gap-3 mb-3">
               <div className="w-10 h-10 rounded-lg bg-[var(--color-accent-subtle)] flex items-center justify-center">
-                <Gift className="h-5 w-5 text-[var(--color-accent)]" />
+                <TroveIcon size="sm" />
               </div>
               <div>
                 <p className="font-semibold text-[var(--color-text)]">Birthday Wishlist</p>

@@ -3,7 +3,7 @@ import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { TroveIcon, TroveText } from '@/components/ui/logo';
 import { createClient } from '@/lib/db/server';
-import { Gift, Share2, Heart, ArrowRight } from 'lucide-react';
+import { Share2, Heart, ArrowRight } from 'lucide-react';
 
 export default async function HomePage() {
   const supabase = await createClient();
@@ -70,7 +70,7 @@ export default async function HomePage() {
         <div className="mt-24 sm:mt-32 grid gap-6 sm:gap-8 md:grid-cols-3">
           <Card className="text-center">
             <div className="w-12 h-12 bg-[var(--color-accent-subtle)] rounded-xl flex items-center justify-center mx-auto mb-4">
-              <Gift className="h-6 w-6 text-[var(--color-accent)]" />
+              <TroveIcon size="md" />
             </div>
             <h3 className="font-semibold text-[var(--color-text)] mb-2 text-lg font-display">
               Save from anywhere
